@@ -1,0 +1,38 @@
+{   
+	"name": "bmcatech/bmcaPHPframework",
+	"type": "library",
+	"homepage": "http://bmcatech.com/doc/framework",
+	"license": "GPL",
+	"version": "0.0.1",
+	"authors": [
+		{
+			"name": "Chris Henk",
+			"email": "cahenk95@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"swiftmailer/swiftmailer": "~5.4.1",
+		"nojacko/email-validator": "~1.0",
+		"matthiasmullie/minify": "1.3.28",
+		"nesbot/carbon": "~1.14",
+		"filp/whoops": "1.*",
+		"yohang/calendr": "1.*",
+		"mrrio/shellwrap": "~0.4.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"bmca\\framework": "framework/",
+            "bmca\\account": "lib/account",
+			"bmca\\database": "lib/database",
+			"bmca\\exception": "lib/exception",
+			"bmca\\form": "lib/form",
+			"bmca\\log": "lib/log",
+			"bmca\\security": "lib/security",
+			"bmca\\optimize": "lib/optimize",
+			"bmca\\automate": "lib/automate",
+			"bmca\\support": "lib/support"
+		}	
+	},
+	"prefer-stable": true
+}
