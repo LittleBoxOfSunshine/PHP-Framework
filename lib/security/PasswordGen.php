@@ -1,5 +1,7 @@
 <?php	
-	namespace BMCA\security{
+
+	namespace bmca\security{
+		
 		function generatePassword($length = 12, $lowerCase = true, $upperCase = true, $numbers = true, $symbols = true){
 			$charset = "";
 			
@@ -204,4 +206,5 @@
 				return strlen($str);
 			}
 		}
+		
 	}	

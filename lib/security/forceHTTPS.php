@@ -1,10 +1,11 @@
 <?php 
-	namespace BMCA\security{
+	namespace bmca\security{
+		
 		function forceHTTPS(){
-			if($_SERVER["HTTPS"] != "on")
-			{
+			if($_SERVER["HTTPS"] != "on"){
     			header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
     			exit();
 			}
 		}
+		
 	}

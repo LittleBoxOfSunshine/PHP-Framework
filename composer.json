@@ -31,7 +31,8 @@
 			"bmca\\security": "lib/security",
 			"bmca\\optimize": "lib/optimize",
 			"bmca\\automate": "lib/automate",
-			"bmca\\support": "lib/support"
+			"bmca\\support": "lib/support",
+			"bmca\\execute": "lib/execute"
 		}	
 	},
 	"prefer-stable": true
