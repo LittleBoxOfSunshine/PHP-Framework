@@ -1,0 +1,20 @@
+PDF Generator + Thumbnail Generator:	https://github.com/KnpLabs/snappy
+Generates Fake Data:					https://github.com/fzaninotto/Faker
+PHP Task Runner:						http://taskphp.github.io/
+Another PHP Task Runner:				https://github.com/Codegyre/Robo
+Payment Processing:						https://github.com/thephpleague/omnipay
+PHP Web Sockets:						http://socketo.me/
+PHP Server Cache:						http://www.stashphp.com/
+File Upload Validation + Storage		https://github.com/brandonsavage/Upload
+
+OAuth 2.0 Server						http://oauth2.thephpleague.com/
+OAuth 2.0 Client						http://oauth2-client.thephpleague.com/
+
+______________________________________________________________________________________________
+
+Monolog Logging Library:				https://github.com/Seldaek/monolog
+Monolog Middleware for slim:			https://github.com/there4/slim-stash-middleware
+
+Whoops Exception Debugger:				https://github.com/filp/whoops
+Whoops Middleware for Slim:				https://github.com/zeuxisoo/php-slim-whoops
+
