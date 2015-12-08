@@ -2,6 +2,10 @@
 	
 	namespace bmca\database{
 
+		// Import Dependencies
+		require __DIR__ . '/vendor/autoload.php';		
+
+		// Forces PDO with prepared statements, enables query buffering
 		class Connection{
 			
 			//Database the connection is using
@@ -27,40 +31,71 @@
 				$this->PASSWORD = $password;
 				
 				//initialize the connection
-				$this->CONNECTION = mysqli_connect($this->ADDRESS, $this->USER, $this->PASSWORD, $this->DATABASE);
+				try {
+					$this->CONNECTION = new PDO("mysql:host=$this->ADDRESS;dbname=$this->DATABASE", $this->USER, $this->PASSWORD);
+					$this->CONNECTION->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				} catch(PDOException $e) {
+					 \bmca\exception\Handler::fatalException('ERROR: ' . $e->getMessage());
+				}
 			}
 			
-			//Execute SQL query
-			public function query($sql){
-				//Sanatize input
-				mysqli_real_escape_string($this->DATABASE, $query);
+			public static function bindParam(){
 				
-				//Initialize array for result storage
-				$results = [];
+			}
+			
+			public function fetchBound(){
 				
-				//Execute the query
-				$rows = mysqli_query($this->DATABASE, $query);
+			}
+			
+			public function fetchAll(){
 				
-				//Load response into matrix
-				while ($row = $rows->fetch_row())
-					$results[] = $row;
-					
-				//Return the matrix
-				return $result;
 			}
 			
-			//Execute SQL query but return array instead of matrix with just one row
-			public function queryRow($sql){
-				$temp = query($sql);
-				return $temp[0];
+			public function fetchAssoc(){
+				
 			}
 			
-			//Execute SQL query but return single value instead of matrix with just one value
-			public function queryValue($sql){
-				$temp = query($sql);
-				return $temp[0][0];
+			public function fetchInto(){
+				
 			}
 			
+			private function fetch(){
+				
+			}
+			
+			public function enableQueryBuffer(){
+				
+			}
+			
+			public function disableQueryBuffer(){
+				
+			}
+			
+			public function flushQueryBuffer(){
+				
+			}
+			
+			public function prepare($prepare){
+				
+			}
+			
+			public function execute(array $args=array()){
+				
+			}
+			
+
+			
+			/*
+			
+			public function fetchClass(){
+				
+			}
+			
+			public function fetchClassLate(){
+				
+			}
+			
+			*/
 		}
 		
 	}

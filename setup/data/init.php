@@ -8,9 +8,10 @@
 			optimization, and advanced autoconfiguration abilities to the Slim Microframework)
 	*/
 	
-	use \bmca\framework\App as App; 
+	// Import all dependencies
+	require 'vendor/autoload.php';
 
-	$app = new App( array(
+	$app = new \bmca\framework\App( array(
 		'mode' => App::DEV_MODE,
 		'debug' => true,
 		'log.level' => \Slim\Log::DEBUG,

@@ -1,6 +1,11 @@
-<?php	
+<?php
+
+
 
 	namespace bmca\security{
+		
+		// Import Dependencies
+		require __DIR__ . '/vendor/autoload.php';
 		
 		function generatePassword($length = 12, $lowerCase = true, $upperCase = true, $numbers = true, $symbols = true){
 			$charset = "";
