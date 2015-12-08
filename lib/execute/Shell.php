@@ -74,7 +74,7 @@ namespace bmca\execute{
 				}
 			}
 			
-			//if some arguements could not be inserted, throw exception
+			//if some arguments could not be inserted, throw exception
 			//if(lastAppendedArg != count($args))
 		
 			//append the remaining command characters
@@ -90,7 +90,7 @@ namespace bmca\execute{
 			
 			$argCount = count($args);
 			
-			//sanatize each arg
+			//sanitize each arg
 			for($i = 0; $i < $argCount; $i++)
 				$args[$i] = escapeshellarg($args[$i]);
 				

@@ -138,7 +138,7 @@
 					
 			}
 			
-			//Get the avaliable error handling modes
+			//Get the available error handling modes
 			public static function getModes(){
 				return self::$MODES;
 			}
