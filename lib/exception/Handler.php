@@ -99,8 +99,8 @@
 			}
 			
 			//The error found leads to undefined behaviour, but could potentially be recoverable in a way that defines behaviour
-			public static function catchableFatalException($message, $args=array(), $backtrace){
-				//backup message incase invalid catch implementation is given
+			public static function catchableFatalException($key, $message, &$args=array(), $backtrace){
+				//backup message in case invalid catch implementation is given
 				$origMessage = $message;
 				
 				//initialize if needed
@@ -118,13 +118,14 @@
 				//if the handler function exists, use it. Otherwise throw an exception
 				if($backtrace[1]['class'] instanceof \bmca\exception\CatchableException){
 					$message = '';
-					
-					$recoveryResult = $backtrace[1]['class']::attemptExceptionRecovery($message, $args);
-					
+
+                    $enumeration = $backtrace[1]['class']::getHandlerEnum();
+					$recoveryResult = self::attemptExceptionRecovery($enumeration, $key, $message, $args);
+
 					// Ensure that user implementation returned true or false
-					if(!is_bool($recoveryResult))
+					if(!isset($recoveryResult) || !is_bool($recoveryResult))
 						self::fatalException('Recovery function passed to catchableException must return a bool', array('Original_Exception' => array($origMessage, $args)), $backtrace);
-					
+
 					//run the recovery function, giving it a variable to write messages to
 					//if it returns true, it's recoverable so run it so, else it is fatal so run it so
 					if($recoveryResult)
@@ -157,7 +158,7 @@
 					//log the backtrace if enabled
 					if(self::$fullTrace)
 						self::$activeLogger->error(var_export(debug_backtrace(), true));
-					
+
 					//show error in browser if not in production
 					if(self::$error_mode == 'PRODUCTION')
 						header('HTTP/1.1 500 Internal Server Error');
@@ -173,6 +174,30 @@
 					die();	
 				}
 			}
+
+            /// Function may be overridden to catch appropriate fatal exceptions
+            private static function attemptExceptionRecovery(\bmca\container\Enum & $enumeration = NULL, &$key = NULL, &$message, array &$args = array()){
+                if($enumeration !== NULL) {
+                    if($enumeration->isKey($key)) {
+                        $handler = $enumeration->$key;
+                        if (is_callable($handler)) {
+                            return $handler('');
+                        }
+                        else{
+                            $message = 'Handler function is not callable...';
+                            return false;
+                        }
+                    }
+                    else {
+                        $message = "Enumeration does not have a key $key...";
+                        return false;
+                    }
+                }
+                else {
+                    $message = 'No enumeration given...';
+                    return false;
+                }
+            }
 		}	
 		
 	}

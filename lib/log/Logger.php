@@ -93,7 +93,7 @@
     		}
 			
 			public function getLevels(){
-				return $levels;
+				return $this->levels;
 			}
 		
 		}	
