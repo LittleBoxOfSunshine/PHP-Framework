@@ -1,6 +1,8 @@
 <?php 
 
 	namespace bmca\log{
+
+        //TODO: fix monlog file writing permission bug
 		
 		// Import Dependencies
 		require 'vendor/autoload.php';
@@ -32,7 +34,7 @@
 			);
 			
 			public function __construct($settings = array(), $name = 'Generic', $merge = true){
-				
+
 				//Import the settings for the logger
 				if($merge){
 					//Add default values to array then merge with input, any user defined values in
@@ -40,7 +42,7 @@
 					$this->settings = array_merge(array(
 						'name' => $name,
 						'handlers' => array(
-							new \Monolog\Handler\StreamHandler(__DIR__."/logs/$name-".date('y-m-d').'.log', \Monolog\Logger::DEBUG),
+							new \Monolog\Handler\StreamHandler("app/logs/$name-".date('y-m-d').'.log', \Monolog\Logger::DEBUG),
 						),
 						'processors' => array(),
 					), $settings);
@@ -52,8 +54,8 @@
 				$this->mono = new \Monolog\Logger($this->settings['name']);
 				
 				//Build the handlers
-				foreach($this->settings['handlers'] as $handler)
-						$this->mono->pushHandler($handler);
+			//	foreach($this->settings['handlers'] as $handler)
+			//			$this->mono->pushHandler($handler);
 				
 				//Build the processors
 				foreach($this->settings['processors'] as $processor)

@@ -15,9 +15,9 @@ namespace bmca\snippet{
 			$files = [];
 
 			//echo $pattern.'<br>';
-			//var_dump(glob($pattern . ($pattern[strlen($pattern)-1] != '/' ? '/*' : '*'), GLOB_NOSORT | GLOB_MARK));echo '<br>';
+			//var_dump(glob($pattern . (($pattern[strlen($pattern) - 1] != '/' && strpos($pattern, '*') === false) ? '/*' : '*'), GLOB_NOSORT | GLOB_MARK));echo '<br>';
 			// Append each file result, recursively call rglob with each directory result
-			foreach (glob($pattern . ($pattern[strlen($pattern) - 1] != '/' ? '/*' : '*'), GLOB_NOSORT | GLOB_MARK) as $path) {
+			foreach (glob($pattern . (($pattern[strlen($pattern) - 1] != '/' && strpos($pattern, '*') === false) ? '/*' : '*'), GLOB_NOSORT | GLOB_MARK) as $path) {
 				// Recursive call if a directory, otherwise just add the path
 				if (substr($path, -1) == '/') {
 					if ($NO_DIR === false) {
